@@ -9,7 +9,7 @@ def print_board(board):
             print("-" * 9)
     print()
 
-def check_winner(board, player):
+def check_win(board, player):
     """Checks if the current player has won."""
     # Check rows and cols
     for i in range(3):
@@ -57,9 +57,9 @@ def minimax(board, depth, is_maximizing):
     is_maximizing: True if it's the AI's turn, False if it's the opponent's.
     """
     # Base cases: Check for win, loss, or draw
-    if check_winner(board, "O"):
+    if check_win(board, "O"):
         return 1  # AI wins (O)
-    if check_winner(board, "X"):
+    if check_win(board, "X"):
         return -1 # Player wins (X)
     if is_board_full(board):
         return 0  # Draw
@@ -138,9 +138,9 @@ def tic_tac_toe():
 
             board[row][col] = current_player
 
-            if check_winner(board, current_player):
+            if check_win(board, current_player):
                 print_board(board)
-                print(f"🎉 Player {current_player} wins!")
+                print(f"Player {current_player} wins!")
                 break
 
             if is_board_full(board):
